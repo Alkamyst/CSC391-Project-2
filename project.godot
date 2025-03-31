@@ -14,6 +14,14 @@ config/name="CSC391 Project 2"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Globals="*res://Misc/Globals/Globals.gd"
+
+[display]
+
+window/stretch/mode="canvas_items"
+
 [global_group]
 
 Bottle=""
