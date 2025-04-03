@@ -1,5 +1,5 @@
-extends Area3D
+extends CollisionShape3D
 
 func _process(delta: float) -> void:
 	if get_parent().started:
-		pass
+		rotate_z(.02)

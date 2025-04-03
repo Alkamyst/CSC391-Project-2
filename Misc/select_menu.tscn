@@ -1,0 +1,187 @@
+[gd_scene load_steps=7 format=3 uid="uid://bixd65st5k0qn"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0b5ob"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nben2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0b5ob"]
+bg_color = Color(0.528112, 0.507911, 0.508856, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_xv4gp"]
+font_size = 32
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 8
+shadow_color = Color(0, 0, 0, 0.431373)
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dqtle"]
+font_size = 64
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 15
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dqtle"]
+size = Vector2(196, 41)
+
+[node name="SelectMenu" type="Node2D"]
+process_mode = 3
+
+[node name="Control2" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.0901961)
+
+[node name="Start" type="PanelContainer" parent="Control2"]
+layout_mode = 0
+offset_left = 155.0
+offset_top = 160.0
+offset_right = 337.0
+offset_bottom = 197.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_0b5ob")
+
+[node name="PanelContainer" type="PanelContainer" parent="Control2/Start"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_nben2")
+
+[node name="Selection1" type="PanelContainer" parent="Control2/Start/PanelContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0b5ob")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control2/Start/PanelContainer/Selection1"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 2
+
+[node name="Label" type="Label" parent="Control2/Start/PanelContainer/Selection1/MarginContainer"]
+layout_mode = 2
+text = "     Start     "
+label_settings = SubResource("LabelSettings_xv4gp")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control2/Start/PanelContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 2
+
+[node name="Label" type="Label" parent="Control2/Start/PanelContainer/MarginContainer"]
+layout_mode = 2
+text = "     Start     "
+label_settings = SubResource("LabelSettings_xv4gp")
+
+[node name="Quit" type="PanelContainer" parent="Control2"]
+layout_mode = 0
+offset_left = 162.0
+offset_top = 251.0
+offset_right = 332.0
+offset_bottom = 288.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_0b5ob")
+
+[node name="PanelContainer2" type="PanelContainer" parent="Control2/Quit"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_nben2")
+
+[node name="Selection2" type="PanelContainer" parent="Control2/Quit/PanelContainer2"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0b5ob")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control2/Quit/PanelContainer2/Selection2"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 2
+
+[node name="Label" type="Label" parent="Control2/Quit/PanelContainer2/Selection2/MarginContainer"]
+layout_mode = 2
+text = "     Quit     "
+label_settings = SubResource("LabelSettings_xv4gp")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control2/Quit/PanelContainer2"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 2
+
+[node name="Label" type="Label" parent="Control2/Quit/PanelContainer2/MarginContainer"]
+layout_mode = 2
+text = "     Quit     "
+label_settings = SubResource("LabelSettings_xv4gp")
+
+[node name="Control" type="Control" parent="Control2"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="Control2/Control"]
+layout_mode = 0
+offset_left = 75.0
+offset_top = 52.0
+offset_right = 424.0
+offset_bottom = 117.0
+text = "Behind Bars"
+label_settings = SubResource("LabelSettings_dqtle")
+
+[node name="StartArea2D" type="Area2D" parent="."]
+position = Vector2(158, 168)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StartArea2D"]
+position = Vector2(88, 10.5)
+shape = SubResource("RectangleShape2D_dqtle")
+
+[node name="StartArea2D2" type="Area2D" parent="."]
+position = Vector2(158, 259)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StartArea2D2"]
+position = Vector2(88, 10.5)
+shape = SubResource("RectangleShape2D_dqtle")
+
+[connection signal="mouse_entered" from="StartArea2D" to="StartArea2D" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="StartArea2D" to="StartArea2D" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="StartArea2D2" to="StartArea2D2" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="StartArea2D2" to="StartArea2D2" method="_on_mouse_exited"]

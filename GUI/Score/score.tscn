@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://b6spjda4lfyfj"]
+
+[ext_resource type="Script" uid="uid://bs4ant06bv3kq" path="res://GUI/Score/score.gd" id="1_lkmbc"]
+[ext_resource type="Script" uid="uid://bbkhyugay4tku" path="res://GUI/Score/label.gd" id="2_cxswi"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_feb5d"]
+font_size = 64
+
+[node name="Score" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_lkmbc")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -204.0
+offset_top = -6.0
+offset_right = 8.0
+offset_bottom = 76.0
+grow_horizontal = 0
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -185.0
+offset_top = -2.0
+offset_right = -15.0
+offset_bottom = 86.0
+grow_horizontal = 0
+text = "0"
+label_settings = SubResource("LabelSettings_feb5d")
+horizontal_alignment = 2
+script = ExtResource("2_cxswi")

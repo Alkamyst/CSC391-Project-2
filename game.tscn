@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://dhwteqn5i0e8m"]
+[gd_scene load_steps=16 format=3 uid="uid://dhwteqn5i0e8m"]
 
 [ext_resource type="Script" uid="uid://cmknkq6fg8f3v" path="res://camera_3d.gd" id="1_80nbo"]
-[ext_resource type="Script" uid="uid://5lyeqmugqtu5" path="res://bottle.gd" id="2_e2o6t"]
-[ext_resource type="Script" uid="uid://cy51xk8yqwqg7" path="res://collision_shape_3d.gd" id="3_feb5d"]
-[ext_resource type="Script" uid="uid://bbkhyugay4tku" path="res://label.gd" id="4_fc0e3"]
+[ext_resource type="PackedScene" uid="uid://dypn5x6aen5op" path="res://Objects/Bottle/bottle.tscn" id="2_j5wjh"]
+[ext_resource type="PackedScene" uid="uid://b6spjda4lfyfj" path="res://GUI/Score/score.tscn" id="3_7jktm"]
+[ext_resource type="PackedScene" uid="uid://b31234lva3qib" path="res://GUI/GameOverScreen/game_over_screen.tscn" id="5_ryrav"]
+[ext_resource type="PackedScene" uid="uid://cumn7mkisslaw" path="res://Misc/fullscreen_controller.tscn" id="9_vef74"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mwb40"]
 sky_top_color = Color(1, 1, 1, 1)
@@ -20,21 +21,32 @@ sky = SubResource("Sky_80nbo")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_80nbo"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_mwb40"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_feb5d"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_80nbo"]
-
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_e2o6t"]
 data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
 
-[sub_resource type="LabelSettings" id="LabelSettings_feb5d"]
-font_size = 64
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7jktm"]
+albedo_color = Color(0.314613, 0.149583, 9.62615e-08, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_80nbo"]
+material = SubResource("StandardMaterial3D_7jktm")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ryrav"]
+albedo_color = Color(0.623529, 0.615686, 0.678431, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_eow3j"]
+material = SubResource("StandardMaterial3D_ryrav")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eow3j"]
+albedo_color = Color(0.637703, 0.858381, 0.954824, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_j5wjh"]
+material = SubResource("StandardMaterial3D_eow3j")
 
 [node name="Game" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.999688, 0.0114406, -0.0222095, 0.0136076, 0.496199, 0.868102, 0.0209518, -0.868133, 0.495889, 0, 0, 0)
+shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_e2o6t")
@@ -45,69 +57,60 @@ script = ExtResource("1_80nbo")
 [node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
 target_position = Vector3(0, 0, -1)
 
-[node name="Bottle" type="RigidBody3D" parent="." groups=["Bottle"]]
+[node name="Bottle" parent="." instance=ExtResource("2_j5wjh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.03495, -5.19426)
-script = ExtResource("2_e2o6t")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Bottle"]
-transform = Transform3D(0.491458, 0, 0, 0, 0.491458, 0, 0, 0, 0.491458, 0, 0, 0)
-shape = SubResource("BoxShape3D_80nbo")
-script = ExtResource("3_feb5d")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Bottle/CollisionShape3D"]
-mesh = SubResource("BoxMesh_mwb40")
-skeleton = NodePath("../../..")
-
-[node name="Area3D" type="Area3D" parent="Bottle"]
-transform = Transform3D(0.491458, 0, 0, 0, 0.491458, 0, 0, 0, 0.491458, 0, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Bottle/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0670695, 0)
-shape = SubResource("BoxShape3D_feb5d")
-
-[node name="Table" type="MeshInstance3D" parent="." groups=["Table"]]
+[node name="TableMesh" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.76998, -5.19794)
-mesh = SubResource("BoxMesh_80nbo")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Table"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Table/StaticBody3D"]
+[node name="TableCollision" type="CollisionShape3D" parent="TableMesh"]
 shape = SubResource("ConcavePolygonShape3D_e2o6t")
 
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
+[node name="TableTop" type="MeshInstance3D" parent="TableMesh" groups=["Table"]]
+transform = Transform3D(1, 0, 0, 0, 0.157488, 0, 0, 0, 1, 0, 0.420685, 0)
+mesh = SubResource("BoxMesh_80nbo")
+skeleton = NodePath("../..")
 
-[node name="Panel" type="Panel" parent="Control"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -204.0
-offset_top = -6.0
-offset_right = 8.0
-offset_bottom = 76.0
-grow_horizontal = 0
-mouse_filter = 2
+[node name="TableLeg1" type="MeshInstance3D" parent="TableMesh" groups=["Table"]]
+transform = Transform3D(0.266127, 0, 0, 0, 0.867579, 0, 0, 0, 0.261129, -0.365877, -0.0903296, 0.368475)
+mesh = SubResource("BoxMesh_80nbo")
+skeleton = NodePath("../..")
 
-[node name="Label" type="Label" parent="Control/Panel"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -185.0
-offset_top = -2.0
-offset_right = -15.0
-offset_bottom = 86.0
-grow_horizontal = 0
-text = "0"
-label_settings = SubResource("LabelSettings_feb5d")
-horizontal_alignment = 2
-script = ExtResource("4_fc0e3")
+[node name="TableLeg2" type="MeshInstance3D" parent="TableMesh" groups=["Table"]]
+transform = Transform3D(0.266127, 0, 0, 0, 0.867579, 0, 0, 0, 0.261129, 0.36375, -0.0903296, 0.368475)
+mesh = SubResource("BoxMesh_80nbo")
+skeleton = NodePath("../..")
 
-[connection signal="body_entered" from="Bottle/Area3D" to="Bottle" method="_on_area_3d_body_entered"]
+[node name="TableLeg3" type="MeshInstance3D" parent="TableMesh" groups=["Table"]]
+transform = Transform3D(0.266127, 0, 0, 0, 0.867579, 0, 0, 0, 0.261129, -0.365877, -0.0903296, -0.367534)
+mesh = SubResource("BoxMesh_80nbo")
+skeleton = NodePath("../..")
+
+[node name="TableLeg4" type="MeshInstance3D" parent="TableMesh" groups=["Table"]]
+transform = Transform3D(0.266127, 0, 0, 0, 0.867579, 0, 0, 0, 0.261129, 0.36375, -0.0903296, -0.367534)
+mesh = SubResource("BoxMesh_80nbo")
+skeleton = NodePath("../..")
+
+[node name="Floor" type="MeshInstance3D" parent="." groups=["Table"]]
+transform = Transform3D(50.9586, 0, 0, 0, 2.20718, 0, 0, 0, 1, 0, -4.3755, -5.19794)
+mesh = SubResource("BoxMesh_eow3j")
+
+[node name="TableMesh" type="StaticBody3D" parent="Floor"]
+
+[node name="TableCollision" type="CollisionShape3D" parent="Floor/TableMesh"]
+shape = SubResource("ConcavePolygonShape3D_e2o6t")
+
+[node name="Wall" type="MeshInstance3D" parent="." groups=["Table"]]
+transform = Transform3D(50.9586, 0, 0, 0, 47.8536, 0, 0, 0, 1, 0, -4.3755, -6.14612)
+mesh = SubResource("BoxMesh_j5wjh")
+
+[node name="TableMesh" type="StaticBody3D" parent="Wall"]
+
+[node name="TableCollision" type="CollisionShape3D" parent="Wall/TableMesh"]
+shape = SubResource("ConcavePolygonShape3D_e2o6t")
+
+[node name="Score" parent="." instance=ExtResource("3_7jktm")]
+
+[node name="GameOverScreen" parent="." instance=ExtResource("5_ryrav")]
+
+[node name="FullscreenController" parent="." instance=ExtResource("9_vef74")]
