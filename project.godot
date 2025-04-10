@@ -10,7 +10,9 @@ config_version=5
 
 [application]
 
-config/name="CSC391 Project 2"
+config/name="Air Vase-ive"
+config/description="Made for my CSC391 class as project 2."
+run/main_scene="uid://dhwteqn5i0e8m"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 

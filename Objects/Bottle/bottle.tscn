@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=4 uid="uid://dypn5x6aen5op"]
+[gd_scene load_steps=12 format=4 uid="uid://dypn5x6aen5op"]
 
 [ext_resource type="Script" uid="uid://5lyeqmugqtu5" path="res://Objects/Bottle/bottle.gd" id="1_tpwqt"]
 [ext_resource type="Script" uid="uid://cy51xk8yqwqg7" path="res://Objects/Bottle/bottle_mesh.gd" id="2_v8ark"]
 [ext_resource type="Texture2D" uid="uid://opgqt2vmo1iw" path="res://Models/Vase_pattern.jpg" id="3_v8ark"]
 [ext_resource type="AudioStream" uid="uid://ble36jtj30rh2" path="res://Sound/glass_hit.wav" id="4_n3stn"]
 [ext_resource type="AudioStream" uid="uid://d13fqkjdyqgpb" path="res://Sound/glass_shatter.wav" id="5_nbtfb"]
+[ext_resource type="PackedScene" uid="uid://caa052yykovns" path="res://Objects/Bottle/explosion_particle.tscn" id="6_nbtfb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_80nbo"]
 size = Vector3(1, 2.21881, 1)
@@ -50,12 +51,13 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_fy6dl")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_feb5d"]
+size = Vector3(1.08203, 2.36572, 1)
 
 [node name="Bottle" type="RigidBody3D" groups=["Bottle"]]
 script = ExtResource("1_tpwqt")
 
 [node name="BottleCollision" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.497911, 0, 0, 0, 0.497911, 0, 0, 0, 0.497911, 0, 0.30343, 0)
+transform = Transform3D(-0.497911, 0, -4.35288e-08, 0, 0.497911, 0, 4.35288e-08, 0, -0.497911, 0, 0.30343, 0)
 shape = SubResource("BoxShape3D_80nbo")
 script = ExtResource("2_v8ark")
 
@@ -64,11 +66,11 @@ transform = Transform3D(0.450157, 0, 0, 0, 0.450157, 0, 0, 0, 0.450157, 0, -1.16
 mesh = SubResource("ArrayMesh_shn63")
 skeleton = NodePath("")
 
-[node name="Area3D" type="Area3D" parent="."]
-transform = Transform3D(0.491458, 0, 0, 0, 0.491458, 0, 0, 0, 0.491458, 0, 0, 0)
+[node name="Area3D" type="Area3D" parent="BottleCollision/BottleMesh"]
+transform = Transform3D(-2.19266, 0, 1.91688e-07, 0, 2.19266, 0, -1.91688e-07, 0, -2.19266, 0, 1.24497, 0)
 
-[node name="SmashCollision" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0670695, 0)
+[node name="SmashCollision" type="CollisionShape3D" parent="BottleCollision/BottleMesh/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00826786, 0.615792, 0)
 shape = SubResource("BoxShape3D_feb5d")
 
 [node name="Glass_Hit" type="AudioStreamPlayer3D" parent="."]
@@ -77,4 +79,6 @@ stream = ExtResource("4_n3stn")
 [node name="Glass_Shatter" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("5_nbtfb")
 
-[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[node name="GPUParticles3D" parent="." instance=ExtResource("6_nbtfb")]
+
+[connection signal="body_entered" from="BottleCollision/BottleMesh/Area3D" to="." method="_on_area_3d_body_entered"]

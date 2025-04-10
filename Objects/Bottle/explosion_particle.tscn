@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://caa052yykovns"]
+
+[ext_resource type="Texture2D" uid="uid://opgqt2vmo1iw" path="res://Models/Vase_pattern.jpg" id="1_2cps2"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_o3oku"]
+particle_flag_rotate_y = true
+angle_min = -155.1
+angle_max = 33.2
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 5.0
+gravity = Vector3(0, -20, 0)
+damping_max = 10.001
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_owxxi"]
+albedo_texture = ExtResource("1_2cps2")
+
+[sub_resource type="BoxMesh" id="BoxMesh_3n6pd"]
+material = SubResource("StandardMaterial3D_owxxi")
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="GPUParticles3D" type="GPUParticles3D"]
+emitting = false
+amount = 16
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_o3oku")
+draw_pass_1 = SubResource("BoxMesh_3n6pd")

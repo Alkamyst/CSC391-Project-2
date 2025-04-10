@@ -5,6 +5,7 @@ var timer: int = 0
 var init_pos_y = 0
 @onready var glass_hit: AudioStreamPlayer3D = $Glass_Hit
 @onready var glass_shatter: AudioStreamPlayer3D = $Glass_Shatter
+@onready var explosion: GPUParticles3D = $GPUParticles3D
 
 func _ready():
 	init_pos_y = position.y
@@ -49,4 +50,6 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		Globals.game_over = true
 		glass_shatter.play()
 		glass_shatter.reparent(get_tree().current_scene)
+		explosion.emitting = true
+		explosion.reparent(get_tree().current_scene)
 		queue_free()
